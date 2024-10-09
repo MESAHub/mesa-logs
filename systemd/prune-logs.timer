@@ -1,0 +1,10 @@
+[Unit]
+Description=Prune MESA logs every day
+
+[Timer]
+#Run every day
+OnCalendar=*-*-* 00:00:00
+Unit=prune-logs.service
+
+[Install]
+WantedBy=timers.target

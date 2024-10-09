@@ -1,0 +1,10 @@
+
+
+Fix Docker setup
+Fix nginx.conf to use https
+Add systemd to the setup
+Add auto-restart feature
+
+Deploy at flatiron / aws?
+
+Update cloudflare
