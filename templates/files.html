@@ -7,9 +7,9 @@
   <u1>
     {% for file in files %}
     <li>
-      <a href="{{ (request.path + '/' if request.path != '/' else '') + file}}">
-        {{ (request.path + '/' if request.path != '/' else '') + file}}
-      </a>
+      <a href="{{ (request.path + '/' if request.path != '/' else '') + file.name }}">
+        {{ (request.path + '/' if request.path != '/' else '') + file.name }}
+      </a> &nbsp;|&nbsp; {{ file.last_modified }} &nbsp;|&nbsp; {{ file.size }}
     </li>
     {% endfor %}
   </u1>

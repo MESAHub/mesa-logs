@@ -1,6 +1,7 @@
 import base64
 import logging
 import os
+import time
 
 from flask import Flask, request, jsonify, render_template, send_from_directory, abort, send_file
 from dotenv import load_dotenv
@@ -26,6 +27,15 @@ def dir_listing(req_path):
         return send_file(abs_path)
     
     files = os.listdir(abs_path)
+    file_list = []
+    for file_name in files:
+        file_path = os.path.join(abs_path, file_name)
+        last_modified = os.path.getmtime(file_path)
+        last_modified = time.localtime(last_modified)
+        last_modified = time.strftime('%Y-%m-%d %H:%M:%S', last_modified)
+        file_size = os.path.getsize(file_path)
+        file_list.append({'name': file_name, 'last_modified': last_modified, 'size': file_size})
+    files = file_list
     return render_template('files.html', files=files)
 
 
