@@ -2,46 +2,38 @@
 
 Mesa logs service
 
-Josiah Schwab
-Philip Mocz
-2024
+Josiah Schwab, 
+Philip Mocz, 
+(2024)
 
-[blog post](https://yoshiyahu.org/research/computing/2021/08/01/mesa-logs/)
-
-A Python Flask app (served with Gunicorn and Nginx) to upload and serve Mesa logs at:
+A Python Flask app (served with Gunicorn, with Docker image deployed on Flatiron Kubernetes) to upload and serve Mesa logs at:
 
 https://logs.mesastar.org/<commit>/<computer_name>/<test_case>/
+
+[blog post](https://yoshiyahu.org/research/computing/2021/08/01/mesa-logs/)
 
 
 ## Running locally
 
-Set up nginx to see your `nginx.conf` file (https://gist.github.com/netpoetica/5879685).
-
-Start nginx:
-
-```console
-sudo nginx
-```
-
 Serve the Flask App with gunicorn
 
 ```console
-bash bin/run.sh
+./run.sh
 ```
 
-Go to: http://localhost:80
-
-At the end, stop nginx:
-
-```console
-sudo nginx -s stop
-```
+Go to: http://localhost:8000
 
 
 ## Running with Docker
 
+Build with:
 
 ```console
-docker-compose up --build
+docker build -t uploads .
 ```
 
+Run with:
+
+```console
+docker run -p 80:8000 uploads
+```

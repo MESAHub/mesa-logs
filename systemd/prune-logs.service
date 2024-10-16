@@ -1,9 +1,0 @@
-[Unit]
-Description=Prune MESA logs
-
-[Service]
-Type=simple
-ExecStart=/var/www/mesa-logs/systemd/prune-logs.sh
-
-[Install]
-WantedBy=default.target

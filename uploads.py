@@ -2,7 +2,7 @@ import base64
 import logging
 import os
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template, send_from_directory, abort, send_file
 from dotenv import load_dotenv
 
 app = Flask(__name__)
@@ -11,8 +11,22 @@ app.logger.setLevel(logging.INFO)
 
 # load environment variables (from .env file, not committed to the repo)
 load_dotenv()
-app.config["UPLOAD_PATH"] = os.getenv("UPLOAD_PATH")
+app.config["UPLOAD_PATH"] = "/var/www/mesa-logs/uploads"
 app.config["API_KEYS"] = os.getenv("API_KEYS").split(",")
+
+
+@app.route("/", defaults={'req_path': ''})
+@app.route("/<path:req_path>", methods=["GET"])
+def dir_listing(req_path):
+    abs_path = os.path.join(app.config["UPLOAD_PATH"], req_path)
+    if not os.path.exists(abs_path):
+        return abort(404)
+    
+    if os.path.isfile(abs_path):
+        return send_file(abs_path)
+    
+    files = os.listdir(abs_path)
+    return render_template('files.html', files=files)
 
 
 @app.route("/uploads", methods=["POST"])

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MESA logs server</title>
+</head>
+<body>
+  <u1>
+    {% for file in files %}
+    <li>
+      <a href="{{ (request.path + '/' if request.path != '/' else '') + file}}">
+        {{ (request.path + '/' if request.path != '/' else '') + file}}
+      </a>
+    </li>
+    {% endfor %}
+  </u1>
+</body>
+</html>
