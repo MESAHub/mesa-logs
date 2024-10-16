@@ -8,7 +8,7 @@ COPY .env /var/www/mesa-logs/
 COPY requirements.txt /var/www/mesa-logs/
 COPY uploads.py /var/www/mesa-logs/
 COPY run.sh /var/www/mesa-logs/
-COPY templates/ /var/www/mesa-logs/
+COPY templates /var/www/mesa-logs/templates
 COPY prune-logs.sh /etc/cron.daily/
 
 RUN mkdir /var/www/mesa-logs/uploads
