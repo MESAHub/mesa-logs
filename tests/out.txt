@@ -1,0 +1,28 @@
+DATE: 2021-02-26
+TIME: 17:06:22
+run inlist_1.0_header
+DATE: 2021-02-26
+TIME: 17:06:22
+ version_number accfd06
+ read inlist_1.0
+ create pre-main-sequence model
+                                          species  mass           8    1.0000000000000000D+00
+
+                                        relax_num_steps         300
+
+                         set_rho_to_dm_div_dV: rho <= 0        1707        1708   -2.6598124734113987D-08    9.1750108324781177D+29   -3.4494953776611603D+37    2.7182792862857164D+00    2.0193998484973342D+12
+           0 terminate reason: nonzero_ierr
+ failed in relax num steps
+ failed in do_relax_num_steps
+ star_create_pre_ms_model ierr          -1
+ do_load1_star ierr          -1
+ do_before_evolve_loop ierr          -1
+ do_before_evolve_loop ierr          -1
+DATE: 2021-02-26
+TIME: 17:06:25
+
+******************************************************************
+failed to create custom_colors_end.mod when running inlist_1.0_header
+******************************************************************
+
+******************** custom_colors failed: does not match test string ********************
