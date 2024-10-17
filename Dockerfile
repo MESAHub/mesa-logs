@@ -3,15 +3,15 @@ FROM python:3.11.3-slim-buster
 # set a directory for the app
 WORKDIR /var/www/mesa-logs
 
-# copy all the files to the container
-COPY .env /var/www/mesa-logs/
-COPY requirements.txt /var/www/mesa-logs/
-COPY uploads.py /var/www/mesa-logs/
-COPY run.sh /var/www/mesa-logs/
-COPY templates /var/www/mesa-logs/templates
-COPY prune-logs.sh /etc/cron.daily/
+# copy support scripts to container
+COPY src/.env /var/www/mesa-logs/.env
+COPY src/requirements.txt /var/www/mesa-logs
+COPY src/uploads.py /var/www/mesa-logs
+COPY src/templates /var/www/mesa-logs/templates
 
-RUN mkdir /var/www/mesa-logs/uploads
+# copy support scripts
+COPY files/scripts/run.sh /var/www/mesa-logs
+COPY files/scripts/prune-logs.sh /etc/cron.daily/
 
 # install dependencies
 RUN pip install --no-cache-dir -r requirements.txt

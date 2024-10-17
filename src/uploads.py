@@ -2,9 +2,10 @@ import base64
 import logging
 import os
 import time
-
 from flask import Flask, request, jsonify, render_template, send_from_directory, abort, send_file
 from dotenv import load_dotenv
+import hmac
+import hashlib
 
 app = Flask(__name__)
 
@@ -14,7 +15,12 @@ app.logger.setLevel(logging.INFO)
 load_dotenv()
 app.config["UPLOAD_PATH"] = "/var/www/mesa-logs/uploads"
 app.config["API_KEYS"] = os.getenv("API_KEYS").split(",")
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["API_DIGESTS"] = [hmac.new(app.config["SECRET_KEY"].encode(), s.encode(), hashlib.sha256).hexdigest() for s in app.config["API_KEYS"]]
 
+def check_valid_key(supplied_key):
+    supplied_digest = hmac.new(app.config["SECRET_KEY"].encode(), supplied_key.encode(), hashlib.sha256).hexdigest()
+    return any(hmac.compare_digest(supplied_digest, key) for key in app.config["API_DIGESTS"])
 
 @app.route("/", defaults={'req_path': ''})
 @app.route("/<path:req_path>", methods=["GET"])
@@ -41,10 +47,10 @@ def dir_listing(req_path):
 
 @app.route("/uploads", methods=["POST"])
 def uploads():
-
     headers = request.headers
     auth = headers.get("X-Api-Key")
-    if not auth in app.config["API_KEYS"]:
+    if not check_valid_key(auth):
+        app.logger.error(f"Invalid API key ({auth}) attempted a POST request and was denied.")    
         return jsonify({"message": "ERROR: Unauthorized"}), 401
     else:
         if not request.is_json:
