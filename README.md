@@ -19,6 +19,7 @@ https://logs.mesastar.org/<commit>/<computer_name>/<test_case>/
 FLASK_APP=uploads.py
 API_KEYS='{comma separated list of keys generated with scripts/generate_api_key.sh}'
 MESALOGS_TEST_API_KEY='{development API key generated with scripts/generate_api_key.sh}'
+SECRET_KEY='{A long string to be used for hashing of API keys during authentication testing}'
 ```
 
 ## Running locally

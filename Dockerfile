@@ -4,7 +4,7 @@ FROM python:3.11.3-slim-buster
 WORKDIR /var/www/mesa-logs
 
 # copy support scripts to container
-COPY src/env /var/www/mesa-logs/.env
+COPY src/.env /var/www/mesa-logs/.env
 COPY src/requirements.txt /var/www/mesa-logs
 COPY src/uploads.py /var/www/mesa-logs
 COPY src/templates /var/www/mesa-logs/templates
