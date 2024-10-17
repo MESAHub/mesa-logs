@@ -62,5 +62,5 @@ docker volume create mesa-logs-data
 Run with: 
 
 ```console
-docker run -p 80:8000 uploads
+docker run --replace --name mesa-logs --volume mesa-logs-data:/var/www/mesa-logs/uploads -p 8000:8000 localhost/mesa-logs:latest
 ```
