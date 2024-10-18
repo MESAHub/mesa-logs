@@ -58,7 +58,7 @@ podman run --replace --name mesa-logs --volume mesa-logs-data:/var/www/mesa-logs
 Build with:  
 
 ```console
-docker build -t uploads .
+docker build -t mesa-logs .
 ```
 
 Create a data volume with:  
@@ -69,5 +69,5 @@ docker volume create mesa-logs-data
 Run with: 
 
 ```console
-docker run --replace --name mesa-logs --volume mesa-logs-data:/var/www/mesa-logs/uploads -p 8000:8000 localhost/mesa-logs:latest
+docker run --replace --name mesa-logs --volume mesa-logs-data:/var/www/mesa-logs/uploads -p 8000:8000 mesa-logs:latest
 ```
