@@ -24,10 +24,16 @@ SECRET_KEY='{A long string to be used for hashing of API keys during authenticat
 
 ## Running locally
 
+Install requirements
+
+```console
+pip install -r src/requirements.txt
+```
+
 Serve the Flask App with gunicorn
 
 ```console
-cd src && ./run.sh
+cd src && ../files/scripts/./run.sh
 ```
 
 Go to: http://localhost:8000
