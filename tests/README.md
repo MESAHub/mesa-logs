@@ -25,7 +25,7 @@ and makes any of the txt files provided available.
 
 An example of the basic API is provided by:
 
-  send_json.sh - example using CURL (no files)
+  `send_json.sh {PORT}` - example using CURL (no files)
   send_json.rb - ruby example (all 3 files)
 
 (these two examples require you to define an environment variable `MESALOGS_TEST_API_KEY` -- remember: never make this secret key public / commit it to a repository)
