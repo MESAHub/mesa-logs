@@ -72,3 +72,11 @@ Run with:
 ```console
 docker run --replace --name mesa-logs --volume mesa-logs-data:/var/www/mesa-logs/uploads -p 8000:8000 mesa-logs:latest
 ```
+
+
+## Publishing on DockerHub
+
+```console
+docker tag mesa-logs pmocz/mesa-logs:v1
+docker push pmocz/mesa-logs:v1
+```
