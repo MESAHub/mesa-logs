@@ -4,6 +4,7 @@ Mesa logs service
 
 Josiah Schwab, 
 Philip Mocz, 
+Kali McLennan
 (2024)
 
 A Python Flask app (served with Gunicorn, with Docker image deployed on Flatiron Kubernetes) to upload and serve Mesa logs at:
