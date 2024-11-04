@@ -77,6 +77,7 @@ docker run --replace --name mesa-logs --volume mesa-logs-data:/var/www/mesa-logs
 ## Publishing on DockerHub
 
 ```console
+docker build -t mesa-logs --platform=linux/arm64/v8,linux/amd64 .
 docker tag mesa-logs pmocz/mesa-logs:v1
 docker push pmocz/mesa-logs:v1
 ```
