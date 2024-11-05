@@ -20,5 +20,6 @@ curl --header "X-Api-Key: $MESALOGS_TEST_API_KEY" \
      --request POST \
      --data '{"computer_name":"curl_example", "commit":"427c21b", "test_case":"1.3M_ms_high_Z"}' \
 http://localhost:${MESA_PORT}/uploads
+#http://mesa-logs.flatironinstitute.org/uploads
 #https://logs.mesastar.org/uploads
 
