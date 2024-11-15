@@ -9,8 +9,8 @@ require 'dotenv'
 # test in production:
 #$mesa_logs_url = 'https://logs.mesastar.org/uploads'
 #$use_ssl = true
-$mesa_logs_url = 'http://mesa-logs.flatironinstitute.org/uploads'
-$use_ssl = false
+$mesa_logs_url = 'https://mesa-logs.flatironinstitute.org/uploads'
+$use_ssl = true
 # test locally:
 $mesa_logs_url = 'https://localhost:8000/uploads'
 $use_ssl = false

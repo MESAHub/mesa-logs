@@ -18,9 +18,17 @@ app.config["API_KEYS"] = os.getenv("API_KEYS").split(",")
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["API_DIGESTS"] = [hmac.new(app.config["SECRET_KEY"].encode(), s.encode(), hashlib.sha256).hexdigest() for s in app.config["API_KEYS"]]
 
+
 def check_valid_key(supplied_key):
     supplied_digest = hmac.new(app.config["SECRET_KEY"].encode(), supplied_key.encode(), hashlib.sha256).hexdigest()
     return any(hmac.compare_digest(supplied_digest, key) for key in app.config["API_DIGESTS"])
+
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = 'https://testhub.mesastar.org'
+    return response
+
 
 @app.route("/", defaults={'req_path': ''})
 @app.route("/<path:req_path>", methods=["GET"])
